@@ -1,0 +1,25 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+resources/
+mta_archives/
+
+# Temporary files
+*.log
+*.tmp
+
+# Operating System
+.DS_Store
+Thumbs.db
+
+# Archive files
+*.zip
+
+# MTA temp folders
+mta-op-*/
+
+# IDE
+.vscode/
+.idea/
