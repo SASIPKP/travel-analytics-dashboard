@@ -1,0 +1,312 @@
+/* ========================================
+   Page-level background & spacing
+   ======================================== */
+html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.sapUiBody {
+    background: #ffffff !important;
+}
+
+.dashboardContainer {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 2rem 3rem;
+    box-sizing: border-box;
+}
+
+/* ========================================
+   KPI Custom Cards
+   ======================================== */
+[id$="--kpiCardContainer"] {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 20px !important;
+    margin-bottom: 1.5rem;
+    width: 100%;
+}
+
+/* Fallback spacing in case flex `gap` doesn't render in this environment */
+.kpiCustomCard {
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+.kpiCustomCard:last-child {
+    margin-right: 0;
+}
+
+.kpiCustomCard {
+    flex: 1;
+    min-width: 240px;
+    min-height: 155px;
+    padding: 1.25rem;
+    border-radius: 14px !important;
+    background: #ffffff !important;
+    border: 1px solid #eaecf0 !important;
+    box-shadow: 0 1px 3px rgba(16, 24, 40, 0.08), 0 1px 2px rgba(16, 24, 40, 0.04) !important;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    box-sizing: border-box;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+}
+
+.kpiCustomCard:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(16, 24, 40, 0.12), 0 2px 4px rgba(16, 24, 40, 0.06) !important;
+}
+
+.kpiBlue {
+    border-top: 3px solid #2b7ce9 !important;
+}
+
+.kpiGreen {
+    border-top: 3px solid #16a34a !important;
+}
+
+.kpiOrange {
+    border-top: 3px solid #f59e0b !important;
+}
+
+.kpiPurple {
+    border-top: 3px solid #7c3aed !important;
+}
+
+.kpiTitle {
+    font-size: 0.95rem !important;
+    font-weight: 700 !important;
+    color: #1d2939 !important;
+}
+
+.kpiSubTitle {
+    color: #667085 !important;
+    font-size: 0.8rem !important;
+}
+
+.kpiValueRow {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    padding-top: 1.5rem;
+}
+
+.kpiIcon {
+    width: 2.8rem;
+    height: 2.8rem;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem !important;
+}
+
+.kpiIconBlue {
+    color: #2b7ce9 !important;
+    background: #eaf2ff !important;
+}
+
+.kpiIconGreen {
+    color: #16a34a !important;
+    background: #eafaf0 !important;
+}
+
+.kpiIconOrange {
+    color: #f59e0b !important;
+    background: #fff7e6 !important;
+}
+
+.kpiIconPurple {
+    color: #7c3aed !important;
+    background: #f3eefe !important;
+}
+
+.kpiValueText {
+    font-size: 2rem !important;
+    font-weight: 700 !important;
+    color: #101828 !important;
+    line-height: 1.2 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+}
+
+.kpiUnit {
+    font-size: 0.9rem !important;
+    font-weight: 600 !important;
+    color: #667085 !important;
+    margin-bottom: 0.25rem;
+}
+
+/* ========================================
+   Chart Panels
+   ======================================== */
+.analyticsChartPanel,
+.sapMPanel {
+    border-radius: 12px !important;
+    box-shadow: 0 1px 3px rgba(16, 24, 40, 0.08), 0 1px 2px rgba(16, 24, 40, 0.04) !important;
+    border: 1px solid #eaecf0 !important;
+    background: #ffffff !important;
+    margin-bottom: 1.5rem !important;
+    overflow: hidden;
+}
+
+.analyticsPanelHeader {
+    min-height: 3.25rem !important;
+    height: auto !important;
+    padding: 0.75rem 1rem !important;
+    background: #ffffff !important;
+    border-bottom: 1px solid #f0f1f3 !important;
+}
+
+.analyticsPanelHeader .sapMTitle {
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    color: #1d2939 !important;
+    line-height: 1.4 !important;
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: unset !important;
+}
+
+.analyticsChartPanel .sapMPanelContent {
+    padding: 1rem !important;
+}
+
+[id$="--secondaryChartsContainer"] {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 1.5rem !important;
+    margin-top: 0 !important;
+    margin-bottom: 1.5rem !important;
+    width: 100% !important;
+}
+
+[id$="--secondaryChartsContainer"] .sapUiTinyMarginEnd,
+[id$="--secondaryChartsContainer"] .sapUiMediumMarginBottom {
+    margin: 0 !important;
+}
+
+[id$="--revenueByCurrencyPanel"],
+[id$="--agencyWisePanel"] {
+    min-width: 0 !important;
+    width: 100% !important;
+}
+
+/* Prevent double spacing: the Recent Travels panel has a UI5 utility class
+   (sapUiMediumMarginTop) that adds its own top margin on top of the previous
+   section's bottom margin. Neutralize it so spacing stays consistent. */
+[id$="--recentTravelsPanel"].sapUiMediumMarginTop {
+    margin-top: 0 !important;
+}
+
+/* ========================================
+   Recent Travels Table
+   ======================================== */
+.sapMPanel .sapMListTbl,
+.sapMTable {
+    border-radius: 0 0 12px 12px !important;
+}
+
+.sapMTable .sapMListTblHeader {
+    background-color: #f9fafb !important;
+}
+
+.sapMTable .sapMListTblHeader .sapMLabel {
+    font-weight: 600 !important;
+    color: #475467 !important;
+    font-size: 0.8rem !important;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+
+.sapMTable tr.sapMLIB:hover {
+    background-color: #f9fafb !important;
+    cursor: default;
+}
+
+.sapMTable .sapMLIB {
+    border-bottom: 1px solid #f0f1f3 !important;
+}
+
+.sapMSF {
+    border-radius: 8px !important;
+}
+
+/* ========================================
+   Section spacing
+   ======================================== */
+.sectionBlock {
+    margin-bottom: 1.5rem;
+}
+
+/* ========================================
+   Dashboard Header (edge-to-edge dark strip, Geckoboard-style)
+   ======================================== */
+.dashboardHeaderToolbar {
+    min-height: 4rem !important;
+    height: auto !important;
+    box-sizing: border-box !important;
+    background: linear-gradient(90deg, #1b2a4a 0%, #263a63 100%) !important;
+    border-radius: 0 !important;
+
+    /* Break out of .dashboardContainer's side padding so the bar spans full width */
+    width: calc(100% + 6rem) !important;
+    margin-left: -3rem !important;
+    margin-right: -3rem !important;
+    margin-top: -2rem !important;
+    margin-bottom: 2rem !important;
+    padding: 1.25rem 3rem !important;
+
+    /* Shadow along the bottom edge only, to separate the bar from content below */
+    box-shadow: 0 4px 10px -4px rgba(16, 24, 40, 0.25) !important;
+}
+
+#dashboardHeaderTitle,
+.dashboardHeaderToolbar .sapMTitle,
+.dashboardHeaderToolbar .sapMTitleInner,
+.dashboardHeaderToolbar .sapMTitle .sapMTitleInner,
+.dashboardHeaderToolbar #dashboardHeaderTitle-inner,
+.dashboardHeaderToolbar h1 {
+    color: #ffffff !important;
+    font-size: 1.5rem !important;
+    font-weight: 700 !important;
+}
+
+/* Emphasized button needs to stay legible against the dark header */
+.dashboardHeaderToolbar .sapMBtn.sapMBtnEmphasized {
+    background-color: #ffffff !important;
+    border-color: #ffffff !important;
+}
+.dashboardHeaderToolbar .sapMBtn.sapMBtnEmphasized .sapMBtnContent,
+.dashboardHeaderToolbar .sapMBtn.sapMBtnEmphasized .sapMBtnText,
+.dashboardHeaderToolbar .sapMBtn.sapMBtnEmphasized .sapUiIcon {
+    color: #1b2a4a !important;
+}
+
+/* ========================================
+   Responsive tweaks
+   ======================================== */
+@media (max-width: 600px) {
+    .dashboardContainer {
+        padding: 0.75rem;
+    }
+
+    .kpiCustomCard {
+        min-width: 100%;
+        flex: 1 1 100%;
+    }
+
+    [id$="--secondaryChartsContainer"] {
+        grid-template-columns: 1fr !important;
+    }
+
+    .dashboardHeaderToolbar {
+        width: calc(100% + 1.5rem) !important;
+        margin-left: -0.75rem !important;
+        margin-right: -0.75rem !important;
+        margin-top: -0.75rem !important;
+        padding: 0.75rem 1rem !important;
+    }
+}

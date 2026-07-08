@@ -1,0 +1,81 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+
+    <Panel
+        id="recentTravelsPanel">
+
+        <headerToolbar>
+            <Toolbar id="recentTravelsToolbar">
+                <Title
+                    id="recentTravelsTitle"
+                    text="Recent Travels" />
+
+                <ToolbarSpacer id="recentTravelsToolbarSpacer" />
+
+                <SearchField
+                    id="recentTravelsSearch"
+                    width="250px"
+                    placeholder="Search Travel ID, Agency, Customer"
+                    liveChange=".onSearchRecentTravels" />
+
+                <Button
+                    id="sortTravelButton"
+                    icon="sap-icon://sort"
+                    tooltip="Sort by Travel ID"
+                    press=".onSortTravelId" />
+            </Toolbar>
+        </headerToolbar>
+
+        <Table
+            id="recentTravelsTable"
+            fixedLayout="true"
+            items="{dashboard>/recentTravels}">
+
+            <columns>
+                <Column id="travelIdColumn" width="12%">
+                    <Text id="travelIdColumnText" text="Travel ID" />
+                </Column>
+
+                <Column id="agencyColumn" width="18%">
+                    <Text id="agencyColumnText" text="Agency" />
+                </Column>
+
+                <Column id="customerColumn" width="18%">
+                    <Text id="customerColumnText" text="Customer" />
+                </Column>
+
+                <Column id="beginDateColumn" width="22%">
+                    <Text id="beginDateColumnText" text="Begin Date" />
+                </Column>
+
+                <Column id="totalPriceColumn" width="30%" hAlign="End">
+                    <Text id="totalPriceColumnText" text="Total Price" />
+                </Column>
+            </columns>
+
+            <items>
+                <ColumnListItem id="recentTravelRow">
+                    <cells>
+                        <Text id="travelIdText" text="{dashboard>travel_id}" />
+                        <Text id="agencyText" text="{dashboard>agency_id}" />
+                        <Text id="customerText" text="{dashboard>customer_id}" />
+                        <Text id="beginDateText" text="{dashboard>begin_date}" />
+                        <Text
+                            id="totalPriceText"
+                            text="{
+                                parts: [
+                                    {path: 'dashboard>total_price'},
+                                    {path: 'dashboard>currency_code'}
+                                ],
+                                formatter: '.formatter.formatAmount'
+                            }" />
+                    </cells>
+                </ColumnListItem>
+            </items>
+
+        </Table>
+
+    </Panel>
+
+</core:FragmentDefinition>

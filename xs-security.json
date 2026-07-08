@@ -1,0 +1,5 @@
+{
+  "xsappname": "travelanalyticsenterprise-xsuaa",
+  "tenant-mode": "dedicated",
+  "description": "Security configuration for Travel Analytics Enterprise Dashboard"
+}

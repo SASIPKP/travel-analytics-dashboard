@@ -1,0 +1,63 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+
+    <HBox
+    id="kpiCardContainer"
+    wrap="Wrap"
+    justifyContent="SpaceBetween">
+
+        <VBox id="totalTravelsTile" class="kpiCustomCard kpiBlue">
+            <VBox class="kpiCardHeader">
+                <Title text="Total Travels" level="H4" class="kpiTitle" />
+                <Text text="All travel records" class="kpiSubTitle" />
+            </VBox>
+
+            <HBox class="kpiValueRow">
+                <core:Icon src="sap-icon://travel-expense" class="kpiIcon kpiIconBlue" />
+                <Text text="{dashboard>/totalTravels}" class="kpiValueText" />
+            </HBox>
+        </VBox>
+
+        <VBox id="totalRevenueTile" class="kpiCustomCard kpiGreen">
+            <VBox class="kpiCardHeader">
+                <Title text="Total Revenue" level="H4" class="kpiTitle" />
+                <Text text="USD + EUR combined" class="kpiSubTitle" />
+            </VBox>
+
+            <HBox class="kpiValueRow">
+                <core:Icon src="sap-icon://sales-order" class="kpiIcon kpiIconGreen" />
+                <Text
+                    text="{path: 'dashboard>/totalRevenue', formatter: '.formatter.formatRevenueInK'}"
+                    class="kpiValueText" />
+                <Text text="K" class="kpiUnit" />
+            </HBox>
+        </VBox>
+
+        <VBox id="customersTile" class="kpiCustomCard kpiOrange">
+            <VBox class="kpiCardHeader">
+                <Title text="Customers" level="H4" class="kpiTitle" />
+                <Text text="Unique customers" class="kpiSubTitle" />
+            </VBox>
+
+            <HBox class="kpiValueRow">
+                <core:Icon src="sap-icon://customer" class="kpiIcon kpiIconOrange" />
+                <Text text="{dashboard>/totalCustomers}" class="kpiValueText" />
+            </HBox>
+        </VBox>
+
+        <VBox id="agenciesTile" class="kpiCustomCard kpiPurple">
+            <VBox class="kpiCardHeader">
+                <Title text="Agencies" level="H4" class="kpiTitle" />
+                <Text text="Unique agencies" class="kpiSubTitle" />
+            </VBox>
+
+            <HBox class="kpiValueRow">
+                <core:Icon src="sap-icon://company-view" class="kpiIcon kpiIconPurple" />
+                <Text text="{dashboard>/totalAgencies}" class="kpiValueText" />
+            </HBox>
+        </VBox>
+
+    </HBox>
+
+</core:FragmentDefinition>

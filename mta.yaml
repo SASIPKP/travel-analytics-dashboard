@@ -1,0 +1,99 @@
+_schema-version: "3.3"
+ID: travelanalyticsenterprise
+version: 1.0.4
+
+parameters:
+  deploy_mode: html5-repo
+  enable-parallel-deployments: true
+
+modules:
+  - name: travelanalyticsenterprise-destination-content
+    type: com.sap.application.content
+    requires:
+      - name: travelanalyticsenterprise-destination-service
+        parameters:
+          content-target: true
+      - name: travelanalyticsenterprise-repo-host
+        parameters:
+          service-key:
+            name: travelanalyticsenterprise-repo-host-key
+      - name: travelanalyticsenterprise-xsuaa
+        parameters:
+          service-key:
+            name: travelanalyticsenterprise-xsuaa-key
+    build-parameters:
+      no-source: true
+    parameters:
+      content:
+        instance:
+          destinations:
+            - Name: travelanalyticsenterprise_html_repo_host
+              ServiceInstanceName: travelanalyticsenterprise-html5-service
+              ServiceKeyName: travelanalyticsenterprise-repo-host-key
+              sap.cloud.service: travelanalyticsenterprise.service
+            - Name: travelanalyticsenterprise_xsuaa
+              Authentication: OAuth2UserTokenExchange
+              ServiceInstanceName: travelanalyticsenterprise-xsuaa
+              ServiceKeyName: travelanalyticsenterprise-xsuaa-key
+              sap.cloud.service: travelanalyticsenterprise.service
+          existing_destinations_policy: update
+
+  - name: travelanalyticsenterprise-app-content
+    type: com.sap.application.content
+    path: .
+    requires:
+      - name: travelanalyticsenterprise-repo-host
+        parameters:
+          content-target: true
+    build-parameters:
+      build-result: resources
+      requires:
+        - name: comtravelanalyticstravelanalyticsenterprise
+          artifacts:
+            - comtravelanalyticstravelanalyticsenterprise.zip
+          target-path: resources/
+
+  - name: comtravelanalyticstravelanalyticsenterprise
+    type: html5
+    path: .
+    build-parameters:
+      build-result: dist
+      builder: custom
+      commands:
+        - npm install
+        - npm run build:cf
+      supported-platforms: []
+
+resources:
+  - name: travelanalyticsenterprise-xsuaa
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: xsuaa
+      service-plan: application
+      service-name: travelanalyticsenterprise-xsuaa
+      path: xs-security.json
+
+  - name: travelanalyticsenterprise-repo-host
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: html5-apps-repo
+      service-plan: app-host
+      service-name: travelanalyticsenterprise-html5-service
+
+  - name: travelanalyticsenterprise-destination-service
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: destination
+      service-plan: lite
+      service-name: travelanalyticsenterprise-destination-service
+      config:
+        HTML5Runtime_enabled: true
+        init_data:
+          instance:
+            destinations:
+              - Name: ui5
+                Type: HTTP
+                ProxyType: Internet
+                Authentication: NoAuthentication
+                URL: https://ui5.sap.com
+            existing_destinations_policy: update

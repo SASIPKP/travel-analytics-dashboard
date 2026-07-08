@@ -1,0 +1,206 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:viz="sap.viz.ui5.controls"
+    xmlns:viz.data="sap.viz.ui5.data"
+    xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds">
+
+    <VBox
+        id="chartsSection">
+
+        <Panel
+            id="travelTrendPanel"
+            class="sapUiMediumMarginBottom analyticsChartPanel">
+
+            <headerToolbar>
+                <Toolbar
+                    id="travelTrendPanelHeaderToolbar"
+                    class="analyticsPanelHeader">
+                    <Title
+                        id="travelTrendPanelTitle"
+                        text="Travel Trend by Month-Year"
+                        level="H3" />
+                </Toolbar>
+            </headerToolbar>
+
+            <viz:VizFrame
+                id="travelTrendChart"
+                width="100%"
+                height="320px"
+                vizType="line"
+                uiConfig="{applicationSet:'fiori'}">
+
+                <viz:dataset>
+                    <viz.data:FlattenedDataset
+                        id="travelTrendDataset"
+                        data="{dashboard>/travelTrend}">
+
+                        <viz.data:dimensions>
+                            <viz.data:DimensionDefinition
+                                id="travelTrendMonthDimension"
+                                name="Month"
+                                value="{dashboard>month}" />
+                        </viz.data:dimensions>
+
+                        <viz.data:measures>
+                            <viz.data:MeasureDefinition
+                                id="travelTrendMeasure"
+                                name="Travels"
+                                value="{dashboard>travels}" />
+                        </viz.data:measures>
+
+                    </viz.data:FlattenedDataset>
+                </viz:dataset>
+
+                <viz:feeds>
+                    <viz.feeds:FeedItem
+                        id="travelTrendValueAxisFeed"
+                        uid="valueAxis"
+                        type="Measure"
+                        values="Travels" />
+
+                    <viz.feeds:FeedItem
+                        id="travelTrendCategoryAxisFeed"
+                        uid="categoryAxis"
+                        type="Dimension"
+                        values="Month" />
+                </viz:feeds>
+
+            </viz:VizFrame>
+
+        </Panel>
+
+        <HBox
+            id="secondaryChartsContainer"
+            width="100%"
+            wrap="Wrap">
+
+            <Panel
+                id="revenueByCurrencyPanel"
+                class="sapUiTinyMarginEnd sapUiMediumMarginBottom analyticsChartPanel">
+
+                <headerToolbar>
+                    <Toolbar
+                        id="revenueByCurrencyPanelHeaderToolbar"
+                        class="analyticsPanelHeader">
+                        <Title
+                            id="revenueByCurrencyPanelTitle"
+                            text="Revenue by Currency"
+                            level="H3" />
+                    </Toolbar>
+                </headerToolbar>
+
+                <viz:VizFrame
+                    id="revenueByCurrencyChart"
+                    width="100%"
+                    height="300px"
+                    vizType="donut"
+                    uiConfig="{applicationSet:'fiori'}">
+
+                    <viz:dataset>
+                        <viz.data:FlattenedDataset
+                            id="revenueByCurrencyDataset"
+                            data="{dashboard>/revenueByCurrency}">
+
+                            <viz.data:dimensions>
+                                <viz.data:DimensionDefinition
+                                    id="currencyDimension"
+                                    name="Currency"
+                                    value="{dashboard>currency}" />
+                            </viz.data:dimensions>
+
+                            <viz.data:measures>
+                                <viz.data:MeasureDefinition
+                                    id="revenueMeasure"
+                                    name="Revenue"
+                                    value="{dashboard>revenue}" />
+                            </viz.data:measures>
+
+                        </viz.data:FlattenedDataset>
+                    </viz:dataset>
+
+                    <viz:feeds>
+                        <viz.feeds:FeedItem
+                            id="revenueSizeFeed"
+                            uid="size"
+                            type="Measure"
+                            values="Revenue" />
+
+                        <viz.feeds:FeedItem
+                            id="revenueColorFeed"
+                            uid="color"
+                            type="Dimension"
+                            values="Currency" />
+                    </viz:feeds>
+
+                </viz:VizFrame>
+
+            </Panel>
+
+            <Panel
+                id="agencyWisePanel"
+                class="sapUiTinyMarginEnd sapUiMediumMarginBottom analyticsChartPanel">
+
+                <headerToolbar>
+                    <Toolbar
+                        id="agencyWisePanelHeaderToolbar"
+                        class="analyticsPanelHeader">
+                        <Title
+                            id="agencyWisePanelTitle"
+                            text="Agency-wise Travel Count"
+                            level="H3" />
+                    </Toolbar>
+                </headerToolbar>
+
+                <viz:VizFrame
+                    id="agencyWiseChart"
+                    width="100%"
+                    height="300px"
+                    vizType="column"
+                    uiConfig="{applicationSet:'fiori'}">
+
+                    <viz:dataset>
+                        <viz.data:FlattenedDataset
+                            id="agencyWiseDataset"
+                            data="{dashboard>/agencyStatistics}">
+
+                            <viz.data:dimensions>
+                                <viz.data:DimensionDefinition
+                                    id="agencyDimension"
+                                    name="Agency"
+                                    value="{dashboard>agency}" />
+                            </viz.data:dimensions>
+
+                            <viz.data:measures>
+                                <viz.data:MeasureDefinition
+                                    id="agencyCountMeasure"
+                                    name="Travel Count"
+                                    value="{dashboard>count}" />
+                            </viz.data:measures>
+
+                        </viz.data:FlattenedDataset>
+                    </viz:dataset>
+
+                    <viz:feeds>
+                        <viz.feeds:FeedItem
+                            id="agencyCountValueFeed"
+                            uid="valueAxis"
+                            type="Measure"
+                            values="Travel Count" />
+
+                        <viz.feeds:FeedItem
+                            id="agencyCategoryFeed"
+                            uid="categoryAxis"
+                            type="Dimension"
+                            values="Agency" />
+                    </viz:feeds>
+
+                </viz:VizFrame>
+
+            </Panel>
+
+        </HBox>
+
+    </VBox>
+
+</core:FragmentDefinition>
